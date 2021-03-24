@@ -1,0 +1,381 @@
+@import url("https://fonts.googleapis.com/css?family=Lato");
+
+$inputbg: #ECF2F3;
+$textDisabled: #B3C8D1;
+$textEnabled: #797979;
+$ikYellow: #FFCE00;
+$ikYellowLight: #FFF5CC;
+$lightgreen: #DFFDF4;
+$darkgreen: #3DCC9F;
+$lightred: #FFECEC;
+$darkred: #E85F71;
+
+$inputHeight: 40px;
+$input-width: 97px;
+
+$btnHeight: 50px;
+
+
+$break-top: 60px;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body { 
+    font-family: Lato, Arial;
+    overflow-x: hidden;
+}
+
+button{
+    cursor: pointer;
+}
+
+.hide{    
+    display: none;
+    visibility: hidden;
+    padding-right: 10px;    
+}
+
+@mixin input-selects(){
+    border-radius: 4px;
+    background-color: $inputbg;
+    border: none;
+    color: black;
+    caret-color: $ikYellow;
+    padding:10px;
+    width: 100%;
+    margin-top: 5px;
+    height: $inputHeight;
+    font-size: 14px;
+    
+
+
+    &:focus{
+        background-color: rgba($ikYellow, 0.2);
+        outline-color: $ikYellow;
+    }
+
+    &:invalid{
+        color: red;
+    }
+
+    &:required:invalid {
+        color: #000000;
+      }
+
+    option[value=""][disabled] {
+        display: none;
+    }
+
+    &:disabled{
+        background-color: lighten($textEnabled, 50%);
+    }
+}
+
+.paymentContainer{
+    width:360px;
+    height: 100vh;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px 20px 20px 20px;
+    box-shadow: 0px 0px 8px 0px lightgray;
+    margin-left: 8px;
+    transform: translateX(100%);
+    transition: transform 1s cubic-bezier(0.22, 0.61, 0.36, 1);
+
+    &.active{
+        transform: translateX(0%);
+    }
+    
+
+    &__header{
+        text-transform: uppercase;
+        border-bottom: 1px solid $textDisabled;
+        height: 40px;
+        width: 100%;
+        text-align: center;
+        position: fixed;
+        top: 0px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        box-sizing: content-box;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+
+        .mid{
+            font-size: 12px;
+            text-transform: none;
+            margin-top:5px;
+        }
+    }
+
+    .paymentIndicators{
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        padding-top: 30px;
+        padding-bottom: 30px;
+        z-index: 1;
+
+        .paymentIndicator{
+            width: $input-width;
+            height:63px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background-color: $inputbg;
+            align-items: center;
+            border-radius: 4px;
+            font-size: 12px;
+            color: $textDisabled;
+            svg{
+                margin-bottom: 5px;
+                path{
+                    fill: $textDisabled;
+                }
+            }
+
+            
+            &.active{
+                background-color: $ikYellowLight;
+                color: $textEnabled;
+                box-shadow: 0px 3px 6px 0px rgba(0,0,0,0.08);
+
+                svg{
+                    path{
+                        fill: $ikYellow;
+                    }
+                }
+
+                &.success{
+                    background-color: $darkgreen;
+                    color: white;
+
+                    svg{
+                        path{
+                            fill: white;
+                        }
+                    }
+
+                }
+
+                &.failure{
+                    background-color: $darkred;
+
+                    color: white;
+
+                    svg{
+                        path{
+                            fill: white;
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+
+    .paymentContainer__cardDetails{
+        width: 100%;
+        top: 50%;
+        position: absolute;
+        padding: 20px;
+        transform: translateY(-50%);
+
+        label{
+            font-size: 12px;
+        }
+
+        input {
+            @include input-selects();
+        }   
+
+        .field{
+            
+            display: flex;
+            flex-direction: column-reverse;
+            margin-bottom: 15px;
+
+            &:first-child{
+                margin-top: 15px;
+            }
+
+                    
+        }
+
+        .field-group{
+
+            &.cardExtra{
+                display: flex;
+                
+                .leftBlock{
+                    display: flex;
+                    position: relative; 
+                    
+                    span{
+                        position: absolute;
+                        top: 33px;
+                        left: 103px;
+                    }
+                }
+
+                .rightBlock{
+                    display: flex;
+                    flex-direction: column-reverse;
+
+                    label{
+                        
+                        span{                            
+                            width: 17px;
+                            height: 16px;
+                            background-color: #D5E0E8;
+                            text-align: center;
+                            border-radius: 10px;
+                            color: white; 
+                            float: right;  
+                            cursor: pointer;
+                        }
+                    }
+                    
+                }
+
+               input{
+                    width: $input-width;
+                }
+           
+            }
+
+        }
+    }
+
+    &__pay-btn{
+      height: $btnHeight;
+      background-color: $ikYellow;  
+      border: none;
+      width: 100%;      
+      text-transform: uppercase;     
+      transition: background-color 0.2s ease-in;
+      position: fixed;
+      bottom: 0;
+
+      &:hover{
+        background-color: lighten($ikYellow, 10%);  
+      }
+
+      &:disabled{
+          background-color: lighten($textEnabled, 50%);
+          cursor: not-allowed;
+      }
+    }
+
+    &__clear-btn{
+        background: none;
+        border: none;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        padding-bottom: 5px;
+        text-transform: uppercase;
+        transition: color 0.2s ease-in;
+        color: $textDisabled;
+        position: absolute;
+        bottom: 50px;
+
+        &:hover{
+            color: lighten(black, 50%);  
+           
+        }
+
+    }
+
+
+    .statusContainer.active{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        top: 50%;
+        position: absolute;
+        padding: 20px;
+        transform: translateY(-50%);
+        z-index: 0;
+
+        img{
+            width: 92px;
+            height: 92px;
+        }
+
+        .status{
+            font-size: 24px;
+            font-weight: 600;
+            margin-top: 20px;
+             margin-bottom: 20px;
+        }
+
+        .statusMsg{
+            font-size: 14px;
+            color: $textEnabled;
+            max-width: 80%;
+            text-align: center;
+        }
+
+        button{
+            width: 100%;
+            height: $btnHeight;
+            cursor: pointer;
+            color: white;
+            border: none;
+            position: fixed;
+            bottom: 0;
+            text-transform: uppercase;
+            transition: background-color 0.2s ease-in;
+        }
+
+        &.success{
+            background-color: $lightgreen;
+
+            .status{
+                color: $darkgreen;
+            }
+
+            button{
+                background-color: $darkgreen;
+
+
+                &:hover{
+                    background-color: lighten($darkgreen, 20%);
+                }
+            }
+        }
+
+        &.failure{
+            background-color: $lightred;
+
+            .status{
+                color:$darkred;
+            }
+
+            button{
+                background-color: $darkred;
+                
+
+                &:hover{
+                    background-color: lighten($darkred, 20%);
+                }
+            }
+        }
+    }
+
+
+
+}
+
+
+

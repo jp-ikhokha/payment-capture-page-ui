@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/merchant.css">
+    <script src="js/merchant.js"></script>
+</head>
+<body>
+
+    <div class="tempFields">
+        <div>
+            <label for="amount">Amount</label>
+            <input type="tel" id="amount" value="199" name="amount" />
+        </div>
+    
+        <div>
+            <label for="merchantid">Merchant id</label>
+            <input type="text" id="mid" value="1234-568-989" name="merchantid" />
+        </div>
+
+        <div>
+            <label for="success">Successful</label>
+            <input type="checkbox" id="success" checked name="success" />
+        </div>
+
+        <button onclick="addIkPaymentIframe()">Proceed to Payment</button>
+
+    </div>
+
+</body>
+</html>

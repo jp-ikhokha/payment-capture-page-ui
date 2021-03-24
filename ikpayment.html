@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/ikpayment.css">
+
+</head>
+<body>
+
+    
+    <div class="paymentContainer">
+
+        <div class="paymentContainer__header">
+            <label>Ik Payment</label>
+            <label class="mid">--</label>
+        </div>
+
+
+        <div class="paymentIndicators">
+
+            <div class="paymentIndicator details active">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="21.995" viewBox="0 0 32 21.995">
+                    <g id="details" transform="translate(-5 -19.07)">
+                      <path id="Path_11" data-name="Path 11" d="M35,19.07H7a2,2,0,0,0-2,2v18a2,2,0,0,0,2,2H35a2,2,0,0,0,2-2v-18A2,2,0,0,0,35,19.07Zm-27,20a1,1,0,0,1-1-1v-16a1,1,0,0,1,1-1H34a1,1,0,0,1,1,1v16a1,1,0,0,1-1,1Z" fill="#ffce00"/>
+                      <path id="Path_12" data-name="Path 12" d="M73.5,30.31a1,1,0,0,0-1,1v12a1,1,0,1,0,2,0v-12A1.006,1.006,0,0,0,73.5,30.31Z" transform="translate(-43.497 -7.244)" fill="#ffce00"/>
+                      <path id="Path_13" data-name="Path 13" d="M27.684,41.56a3,3,0,1,0,3,3,3,3,0,0,0-3-3Z" transform="translate(-12.683 -14.494)" fill="#ffce00"/>
+                      <path id="Path_14" data-name="Path 14" d="M50.181,41.56a3,3,0,1,0,3,3A3,3,0,0,0,50.181,41.56Z" transform="translate(-27.183 -14.494)" fill="#ffce00"/>
+                    </g>
+                  </svg>
+                  
+                <label>Details</label>
+            </div>
+
+            <div class="paymentIndicator process">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="18.46" viewBox="0 0 22 18.46">
+                    <g id="processing" transform="translate(-102.35 -126.1)">
+                      <path id="Path_5" data-name="Path 5" d="M108.44,133a1.187,1.187,0,0,0-1.676,0l-.857.857-3.211,3.211a1.187,1.187,0,0,0,0,1.676l.015.015a1.187,1.187,0,0,0,1.676,0h0a1.183,1.183,0,0,1,2.019.834v9.848a1.183,1.183,0,0,0,1.185,1.185h.022a1.183,1.183,0,0,0,1.184-1.185V139.6a1.183,1.183,0,0,1,2.019-.834h0a1.187,1.187,0,0,0,1.676,0l.015-.015a1.187,1.187,0,0,0,0-1.676Z" transform="translate(0 -6.062)" fill="rgba(179,200,209,0.46)"/>
+                      <path id="Path_6" data-name="Path 6" d="M266.808,137.982l-.015-.015a1.187,1.187,0,0,0-1.676,0h0a1.183,1.183,0,0,1-2.019-.834v-9.848a1.183,1.183,0,0,0-1.184-1.184h-.022a1.183,1.183,0,0,0-1.184,1.184v9.848a1.183,1.183,0,0,1-2.019.834h0a1.187,1.187,0,0,0-1.676,0l-.015.015a1.187,1.187,0,0,0,0,1.676l4.068,4.068a1.187,1.187,0,0,0,1.676,0l.857-.857,3.218-3.218A1.185,1.185,0,0,0,266.808,137.982Z" transform="translate(-142.805 0)" fill="rgba(179,200,209,0.46)"/>
+                    </g>
+                  </svg>
+                  
+                <label>Processing</label>
+            </div>
+
+            <div class="paymentIndicator status">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30.25" height="17.395" viewBox="0 0 30.25 17.395">
+                    <g id="success2" transform="translate(-0.001 -4.5)">
+                      <path id="Path_8" data-name="Path 8" d="M0,14.32l2.267-2.267L9.83,19.614,7.563,21.881ZM12.85,12.068l7.562-7.562L22.68,6.773l-7.562,7.562Z" transform="translate(0 0.003)" fill="#d2dfe4"/>
+                      <path id="Path_9" data-name="Path 9" d="M25.42,4.5,12.563,17.357,7.269,12.063,5,14.332l7.563,7.563L27.689,6.769Z" transform="translate(2.562)" fill="#d2dfe4"/>
+                    </g>
+                  </svg>
+                  
+                <label>Status</label>
+            </div>
+        </div>
+
+        <div class="paymentContainer__cardDetails">
+            <form action="/endpoint" method="post">
+                
+                <div class="field nameOnCard">
+                    <input type="text" id="name-on-card" name="name_on_card" required />                    
+                    <label for="name-on-card">Name on Card</label>
+                </div>
+
+                <div class="field cardNumber">
+                    <input id="card-number" placeholder="•••• •••• •••• ••••" required />
+                    <label for="card-number">Card Number</label>
+                </div>
+
+                <div class="field-group cardExtra">
+                    
+                    <div class="leftBlock">
+
+                        <div class="expiryBlock month">
+                            <label>Expiry Month</label>                           
+                            <input id="exp-month" placeholder="MM" type="tel" name="exp_month" required />               
+                        </div>
+
+                        <span> / </span>
+                        
+
+                        <div class="expiryBlock year"> 
+                            <label>Expiry Year</label>                            
+                            <input id="exp-year" placeholder="YY" type="tel" name="exp_year" required />  
+                        </div>                      
+                       
+
+                    </div>
+
+                    <div class="rightBlock">
+                        <input type="tel" id="cvv-code" name="cvv_code" required maxlength="3" />
+                        <label for="cvv-code">CVV code <span>i</span></label>
+                    </div>
+
+                </div>
+
+            </form>
+
+        </div>
+
+
+        
+
+        <button class="paymentContainer__pay-btn" onclick="sendPaymentDetails()">Pay R<span>---</span></button>
+
+        <button class="paymentContainer__clear-btn" onclick="closePayment()">
+            Return to order
+        </button>
+
+        <div class="statusContainer hide">
+
+            <img src="#" />
+
+            <label class="status"></label>
+
+            <p class="statusMsg"></p>
+
+            <button onclick="closePayment()"></button>
+
+        </div>
+
+    </div>
+</body>
+
+<script src="js/cleave.min.js"></script>
+<script src="js/ikpayment.js"></script>
+</html>
+
