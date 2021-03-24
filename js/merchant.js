@@ -7,7 +7,7 @@ const addIkPaymentIframe = () => {
 
     const ikPaymentFrame = document.createElement('iframe')
     ikPaymentFrame.id = "ikpayment"
-    ikPaymentFrame.src = `/ikpayment.html?amt=${amountToPay}&mid=${mid}&succ=${success}`;
+    ikPaymentFrame.src = `ikpayment.html?amt=${amountToPay}&mid=${mid}&succ=${success}`;
 
     if(document.querySelector('#ikpayment') !== null) {
         return
