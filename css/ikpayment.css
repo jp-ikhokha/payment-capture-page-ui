@@ -6,6 +6,10 @@
           box-sizing: border-box;
 }
 
+html, body {
+  height: 100%;
+}
+
 body {
   font-family: Lato, Arial;
   overflow-x: hidden;
@@ -23,7 +27,7 @@ button {
 
 .paymentContainer {
   width: 360px;
-  height: 100vh;
+  height: 100%;
   background-color: white;
   display: -webkit-box;
   display: -ms-flexbox;
