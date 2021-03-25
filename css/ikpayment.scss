@@ -58,8 +58,24 @@ button{
         outline-color: $ikYellow;
     }
 
-    &:invalid{
-        color: red;
+    &.invalid{
+        color:$darkred;
+        background-color: $lightred;
+        border: 1px solid $darkred;
+
+        &+label{
+            
+
+            &::after{
+                content: '*';
+                font-weight: 600;
+                margin-left:5px;
+                color: $darkred;
+            }
+
+        }
+
+       
     }
 
     &:required:invalid {
@@ -216,12 +232,18 @@ button{
                 
                 .leftBlock{
                     display: flex;
-                    position: relative; 
+                    position: relative;
+
+                    .expiryBlock{
+                        display: flex;
+                        flex-direction: column-reverse;
+                        margin-right: 15px;
+                    }
                     
                     span{
                         position: absolute;
                         top: 33px;
-                        left: 103px;
+                        left: 100px;
                     }
                 }
 
@@ -272,6 +294,10 @@ button{
           background-color: lighten($textEnabled, 50%);
           cursor: not-allowed;
       }
+
+      &:active, &:focus{
+          outline: none;
+      }
     }
 
     &__clear-btn{
@@ -289,6 +315,10 @@ button{
         &:hover{
             color: lighten(black, 50%);  
            
+        }
+
+        &:active, &:focus{
+            outline: none;
         }
 
     }

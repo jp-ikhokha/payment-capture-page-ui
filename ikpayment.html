@@ -62,7 +62,7 @@
             <form action="/endpoint" method="post">
                 
                 <div class="field nameOnCard">
-                    <input type="text" id="name-on-card" name="name_on_card" required />                    
+                    <input type="text" id="name-on-card" name="name_on_card" onchange="removeInvalid(this.id)" required />                    
                     <label for="name-on-card">Name on Card</label>
                 </div>
 
@@ -75,17 +75,17 @@
                     
                     <div class="leftBlock">
 
-                        <div class="expiryBlock month">
-                            <label>Expiry Month</label>                           
-                            <input id="exp-month" placeholder="MM" type="tel" name="exp_month" required />               
+                        <div class="expiryBlock month">                                                  
+                            <input id="exp-month" placeholder="MM" type="tel" name="exp_month" required /> 
+                            <label>Expiry Month</label>                  
                         </div>
 
                         <span> / </span>
                         
 
-                        <div class="expiryBlock year"> 
-                            <label>Expiry Year</label>                            
-                            <input id="exp-year" placeholder="YY" type="tel" name="exp_year" required />  
+                        <div class="expiryBlock year">                                                       
+                            <input id="exp-year" placeholder="YY" type="tel" name="exp_year" required />
+                            <label>Expiry Year</label>  
                         </div>                      
                        
 
@@ -105,7 +105,7 @@
 
         
 
-        <button class="paymentContainer__pay-btn" onclick="sendPaymentDetails()">Pay R<span>---</span></button>
+        <button class="paymentContainer__pay-btn" onclick="checkFieldsStep()">Pay R<span>---</span></button>
 
         <button class="paymentContainer__clear-btn" onclick="closePayment()">
             Return to order

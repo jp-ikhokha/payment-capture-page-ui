@@ -1,6 +1,7 @@
 let amountToPay = null;
 let mid = null;
 let succ = null;
+let formInvalid = false;
 
 const getParameter = (param) => { 
     var params = window.location.search.substr(1).split('&');
@@ -47,36 +48,38 @@ window.addEventListener("load", (event) => {
 //init input formatting ref cleave.js
 // credit card
 let cleaveCreditCard = new Cleave('#card-number', {
-    creditCard: true
+    creditCard: true,
+    onValueChanged: function() {
+        removeInvalid(this.element.id);
+    }
 });
+
 
 let cleaveExpMonth = new Cleave('#exp-month', {
     date: true,
-    datePattern: ['m']
+    datePattern: ['m'],
+    onValueChanged: function() {
+        removeInvalid(this.element.id);
+    }
 });
 
 let cleaveExpYear = new Cleave('#exp-year', {
     date: true,
-    datePattern: ['y']
+    datePattern: ['y'],
+    onValueChanged: function() {
+        removeInvalid(this.element.id);
+    }
 });
 
 let cleaveCVV = new Cleave('#cvv-code', {
-    numeral: true
+    numeral: true,
+    onValueChanged: function() {
+        removeInvalid(this.element.id);
+    }
 });
 
-
-//Send the payment details
-
-const sendPaymentDetails = () => {
-
-    document.querySelector('.paymentContainer__pay-btn').disabled = true;
-
-    document.querySelector('#name-on-card').disabled = true;
-    document.querySelector('#card-number').disabled = true;
-    document.querySelector('#exp-year').disabled = true;
-    document.querySelector('#exp-month').disabled = true;
-    document.querySelector('#cvv-code').disabled = true;
-
+//Check fields are completed
+const checkFieldsStep = () => {
 
     let nameOnCard = document.querySelector('#name-on-card').value;
     let cardNumber = cleaveCreditCard.getRawValue();
@@ -84,8 +87,30 @@ const sendPaymentDetails = () => {
     let expYear = cleaveExpYear.getRawValue();
     let cvv = document.querySelector('#cvv-code').value;
 
+    nameOnCard === '' ? addInvalid('name-on-card') : removeInvalid('name-on-card');
+    cardNumber === '' ? addInvalid(cleaveCreditCard.element.id) : removeInvalid(cleaveCreditCard.element.id);
+    expMonth === '' ? addInvalid(cleaveExpMonth.element.id) : removeInvalid(cleaveExpMonth.element.id);
+    expYear === '' ? addInvalid(cleaveExpYear.element.id) : removeInvalid(cleaveExpYear.element.id);
+    cvv === '' ? addInvalid(cleaveCVV.element.id) : removeInvalid(cleaveCVV.element.id);
+
+    formInvalid ? invalidStep() : sendPaymentDetails();
+
+}
+
+
+//Send the payment details
+
+const sendPaymentDetails = () => {
+
+    document.querySelector('.paymentContainer__pay-btn').disabled = true;
+    document.querySelector('#name-on-card').disabled = true;
+    document.querySelector('#card-number').disabled = true;
+    document.querySelector('#exp-year').disabled = true;
+    document.querySelector('#exp-month').disabled = true;
+    document.querySelector('#cvv-code').disabled = true;
 
     processingStep();
+    
 }
 
 
@@ -149,4 +174,19 @@ const closePayment = () => {
      setTimeout(()=>{
         window.parent.document.body.removeChild(ikPaymentFrame);
      }, 1000);
+}
+
+//light input validation
+const addInvalid = (elementid) => {
+    document.getElementById(elementid).classList.add('invalid');
+    formInvalid = true;
+}
+
+const removeInvalid = (elementid) => {
+    document.getElementById(elementid).classList.remove('invalid');
+    formInvalid = false;
+}
+
+const invalidStep = () => {
+    console.log('invalid')
 }

@@ -183,8 +183,17 @@ button {
   outline-color: #FFCE00;
 }
 
-.paymentContainer .paymentContainer__cardDetails input:invalid {
-  color: red;
+.paymentContainer .paymentContainer__cardDetails input.invalid {
+  color: #E85F71;
+  background-color: #FFECEC;
+  border: 1px solid #E85F71;
+}
+
+.paymentContainer .paymentContainer__cardDetails input.invalid + label::after {
+  content: '*';
+  font-weight: 600;
+  margin-left: 5px;
+  color: #E85F71;
 }
 
 .paymentContainer .paymentContainer__cardDetails input:required:invalid {
@@ -227,10 +236,21 @@ button {
   position: relative;
 }
 
+.paymentContainer .paymentContainer__cardDetails .field-group.cardExtra .leftBlock .expiryBlock {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: column-reverse;
+          flex-direction: column-reverse;
+  margin-right: 15px;
+}
+
 .paymentContainer .paymentContainer__cardDetails .field-group.cardExtra .leftBlock span {
   position: absolute;
   top: 33px;
-  left: 103px;
+  left: 100px;
 }
 
 .paymentContainer .paymentContainer__cardDetails .field-group.cardExtra .rightBlock {
@@ -279,6 +299,10 @@ button {
   cursor: not-allowed;
 }
 
+.paymentContainer__pay-btn:active, .paymentContainer__pay-btn:focus {
+  outline: none;
+}
+
 .paymentContainer__clear-btn {
   background: none;
   border: none;
@@ -295,6 +319,10 @@ button {
 
 .paymentContainer__clear-btn:hover {
   color: gray;
+}
+
+.paymentContainer__clear-btn:active, .paymentContainer__clear-btn:focus {
+  outline: none;
 }
 
 .paymentContainer .statusContainer.active {
@@ -384,4 +412,4 @@ button {
 .paymentContainer .statusContainer.active.failure button:hover {
   background-color: #f5b8c0;
 }
-/*# sourceMappingURL=style.css.map */
+/*# sourceMappingURL=ikpayment.css.map */
